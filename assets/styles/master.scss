@@ -1,0 +1,31 @@
+body {
+	position: relative;
+	width: 100vw;
+	min-height: 100vh;
+	overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.img {
+	&-container {
+		position: relative;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-around;
+		align-items: center;
+		align-content: center;
+	}
+	&-block {
+		img {
+			position: relative;
+			cursor: pointer;
+			width: 10vw;
+			height: auto;
+		}
+		p {
+			width: 100%;
+			text-align: auto;
+		}
+	}
+}
