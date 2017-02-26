@@ -23,9 +23,14 @@ const ImgBlock = ({ index, url, title }) => {
 
   return (
   	<figure className={ `img-block block-${index}` }>
-  		<img
-  			src={ url }
-  			alt='Flickr Image' />
+      <a
+        href={ url }
+        target="_blank"
+        rel="nofollow">
+    		<img
+    			src={ url }
+    			alt='Flickr Image' />
+      </a>
   		<figcaption>{ title }</figcaption>
   	</figure>
   );
