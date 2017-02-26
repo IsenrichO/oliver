@@ -1,3 +1,31 @@
+
+// Sass $Variable Declarations:
+$bckg-color: #F5F8FA;
+$text-caption: #696969;
+
+
+// Sass %Placeholder Declarations:
+%flex-container {
+	position: relative;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: flex-start;
+	align-content: center;
+}
+%no-txt-overflow {
+	word-break: break-all;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-height: 6vh;
+}
+
+
+// Sass Style Declarations:
+* { box-sizing: border-box; }
+html { font: normal 14px/1 'Raleway', 'Helvetica Neue', sans-serif; }
 body {
 	position: relative;
 	width: 100vw;
@@ -5,27 +33,57 @@ body {
 	overflow-x: hidden;
 	margin: 0;
 	padding: 0;
+	background-color: $bckg-color;
+}
+
+.inpt-container {
+	@extend %flex-container;
+  width: 40vw;
+  height: 32px;
+	margin: 1.75rem auto;
+	&:before {
+		position: absolute;
+		content: '';
+		height: 24px;
+	  width: 24px;
+	  top: 4px;
+	  right: 12px;
+		background: transparent url(https://freeiconshop.com/wp-content/uploads/edd/search-solid.png) no-repeat center / contain;
+	}
+	input {
+		width: inherit;
+		height: inherit;
+	  padding: 1rem;
+		border-radius: 1rem;
+	}
 }
 
 .img {
 	&-container {
-		position: relative;
-		display: flex;
-		flex-flow: row nowrap;
-		justify-content: space-around;
-		align-items: center;
-		align-content: center;
+		@extend %flex-container;
+		margin: 5vh 5vw;
 	}
 	&-block {
+	  height: 16vh;
+		margin: 1.75rem 1rem;
+		&:hover img {
+			transform: scale(2);
+			z-index: 1;
+		}
 		img {
 			position: relative;
+			height: 10vh;
+			transition: transform 0.25s ease;
 			cursor: pointer;
-			width: 10vw;
-			height: auto;
+			outline: 2px solid Silver;
+		  outline-offset: 3px;
+		  background-color: $bckg-color;
 		}
-		p {
-			width: 100%;
-			text-align: auto;
+		figcaption {
+			@extend %no-txt-overflow;
+			font-size: 1.15rem;
+			margin: 0.75rem 0;
+			color: $text-caption;
 		}
 	}
 }
