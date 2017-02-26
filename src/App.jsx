@@ -16,31 +16,26 @@ export default class App extends Component {
 		super(props);
 		this.state = {
 			response: [],
-			images: new Array(5).fill('http://lorempixel.com/400/300/'),
 			options: { 
-			  "api_key": API_KEY,
-			  "method": "flickr.photos.search",
-			  "format": "json",
-			  "nojsoncallback": "1",
-			  "text": "yoda"
+			  'api_key': API_KEY,
+			  'method': 'flickr.photos.search',
+			  'format': 'json',
+			  'nojsoncallback': '1',
+			  'text': 'yoda'
 			}
 		};
 	}
 
-	renderImgs(imgArr) {
-		return imgArr.map((img, index) => <ImgBlock key={index} title={ index } url={ img } /> );
-	}
-
 	buildPhotoUrl(obj) {
-		// console.log(obj);
+		console.log(obj);
 		return `http://farm${obj['farm']}.staticflickr.com/${obj['server']}/${obj.id}_${obj.secret}.jpg`;
 	}
 
 	fetchPhotos(options, cb) {
-	  var url, xhr, item, first;
-
-	  url = "https://api.flickr.com/services/rest/";
-	  first = true;
+	  var url = 'https://api.flickr.com/services/rest/',
+		  	first = true,
+	  		xhr,
+	  		item;
 
 	  for (item in options) {
 	    if (options.hasOwnProperty(item)) {
@@ -56,9 +51,6 @@ export default class App extends Component {
 	}
 
 	preFetch() {
-		// setTimeout(() => {
-		// 	this.fetchPhotos(this.state.options, (response) => { self.setState({ response }); });
-		// }, 2000);
 		const self = this;
 		this.fetchPhotos(this.state.options, (response) => {
 			this.setState({ response: JSON.parse(response).photos.photo });
@@ -70,9 +62,7 @@ export default class App extends Component {
 	}
 
 	componentDidMount() {
-		// this.preFetch();
 		let urls = this.state.response.map((obj, id) => this.buildPhotoUrl(obj));
-		console.log(urls);
 	}
 
 	render() {
@@ -81,7 +71,13 @@ export default class App extends Component {
 			<main>
 				<SearchBar />
 				<Photos
-					imgArr={ resp.map((img, i) => this.buildPhotoUrl(img)) } />
+					imgData={ resp.map((img, index) => ({
+						url: this.buildPhotoUrl(img),
+						title: img.title
+					}))}
+					imgUrls={ resp.map((img, index) => this.buildPhotoUrl(img)) }
+					// imgTitles={  }
+					/>
 			</main>
 		);
 	}
