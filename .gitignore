@@ -1,5 +1,7 @@
 
 # Log & Private Environment Files:
+*.hot-update.js
+*.hot-update.json
 logs
 *.log
 .env
