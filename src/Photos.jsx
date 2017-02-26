@@ -3,13 +3,16 @@ import React, { Component } from 'react';
 import ImgBlock from './ImgBlock';
 
 
-// const renderImages = (images) =>
-
-const Photos = ({ imgArr }) => (
+const Photos = ({ imgData, imgUrls }) => (
 	<div className="img-container">
-		{
-			imgArr.map((img, index) => <ImgBlock key={index} title={ index } url={ img } /> )
-		}
+		{ imgData.map((img, index) => (
+        <ImgBlock
+          key={ `ImgEntry_${index}` }
+          index={ index }
+          title={ img.title }
+          url={ img.url } />
+      ))
+    }
 	</div>
 );
 
