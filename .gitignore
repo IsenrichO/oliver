@@ -1,0 +1,15 @@
+
+# Log & Private Environment Files:
+logs
+*.log
+.env
+
+# Database:
+.DS_Store
+
+# Build Directories:
+dist/
+
+# Dependencies:
+node_modules/
+bower_components/
